@@ -1,11 +1,12 @@
 <template>
   <v-container>
     <div v-show="Accueil"> 
-      Bienvenu sur Choupy, le jeu pour améliorer votre vocabulaire, 
+      <p> Bienvenu sur Choupy, </p>
+      <p> Le jeu pour améliorer votre vocabulaire, 
       vous allez devoir trouver des mots à partir de la définition qu'on vous donne, 
       du nombre de lettres et du type (nom, adjectif ...). Vous aurez le droit à 2 erreurs,
       quand vous vous trompez 2 fois sur le même mot, nous vous donnons la première lettre du mot en indice.
-      Bonne chance ! 
+      Bonne chance ! </p>
     <p><v-btn @click="Page_Accueil"> Jouer </v-btn></p>
     </div>
     <div v-show ="!Accueil">
@@ -39,7 +40,7 @@ export default {
         indice: 'A',
       },
       {
-        mot: 'sébum',
+        mot: 'sebum',
         type: 'Nom masculin',
         nbLettre: 5,
         def: 'Sécrétion grasse produite par les glandes sébacées (la peau)',
@@ -127,6 +128,7 @@ export default {
     n: 0,
     reponse: '',
     i: 0,
+    j:0,
     Accueil: true,
     Jeux: false,
     montrer_indice: false
@@ -138,15 +140,23 @@ export default {
     },
 
     indentation () {
+      this.reponse = this.reponse.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       if (this.reponse === this.Mots[this.n].mot) {
-        this.n = this.n +1;
+        this.j = this.i
+        this.i = 0
+        this.n ++
+        this.reponse = ''
+        this.montrer_indice = false
       } else {
-        this.i = this.i + 1;
-        if (this.i == 2) {
+        this.i ++
+        this. j ++
+        if (this.i >= 2) {
           this.montrer_indice = true
         }
         }
-      console.log(this.i),
+      console.log('faute à cette question :' + this.i),
+      console.log('faute total :' + this.j),
+
       console.log(this.n),
       console.log(this.reponse);
     return ''

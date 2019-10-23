@@ -31,8 +31,31 @@ app.use(express.static(path.join(__dirname, '/dist')))
 
 const users = [{
   username: 'admin',
-  password: 'changethispassword'
+  password: 'debayelywahoi'
 }]
+
+const reponses = [{
+  mot: 'tonitruant',
+  indice: 'T'
+},
+{
+  mot: 'absurde',
+  indice: 'A'
+},
+{
+  mot: 'sebum',
+  indice: 'S'
+}
+]
+
+app.post('/api/reponses', (req, res) => {
+    res.json([
+        {
+            rep : reponses[req.body.indice].mot,
+            indice : reponses[req.body.indice].indice
+        }
+    ])
+}
 
 app.get('/api/test', (req, res) => {
   console.log('ce console.log est appelé au bon moment')
@@ -47,8 +70,9 @@ app.get('/api/test', (req, res) => {
   ])
 })
 
-// app.post('/api/reponses', (req, res) => {
-// })
+app.post('/api/reponses', (req, res) => {
+
+})
 
 app.post('/api/login', (req, res) => {
   console.log('req.body', req.body)
