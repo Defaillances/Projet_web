@@ -9,7 +9,7 @@
         quand vous vous trompez 2 fois sur le même mot, nous vous donnons la première lettre du mot en indice.
         Bonne chance !
       </p>
-      <v-text-field v-model="username" label="Username">Entrez votre Username</v-text-field>
+      <v-text-field v-model="username" label="Username" @keyup.enter="login">Entrez votre Username</v-text-field>
       <v-text-field v-model="mdp" label="Mot de passe">Entrez votre mot de passe</v-text-field>
       <v-btn @click="login">Connexion</v-btn>
       <v-btn @click="subscribe">S'inscrire</v-btn>
@@ -20,9 +20,9 @@
       <p v-show="montrer_indice">La première du mot est : {{Mots[n].indice}}</p>
       <p>Le mot est un : {{Mots[n].type}}</p>
       <p>Le mot est composé de {{Mots[n].nbLettre}} lettres</p>
-      <v-btn @click="indentation">mot suivant</v-btn>
-      <v-text-field v-model="reponse" label="Entrez votre réponse">Entrez votre réponse</v-text-field>
-      <v-btn @click="deco"> Se déconnecter </v-btn>
+      <v-text-field v-model="reponse" label="Entrez votre réponse" @keyup.enter="indentation">Entrez votre réponse</v-text-field>
+      <p> <v-btn @click="indentation"> mot suivant </v-btn> </p>
+      <center> <v-btn @click="deco"> Se déconnecter </v-btn>  </center> 
     </div>
   </v-container>
 </template>
