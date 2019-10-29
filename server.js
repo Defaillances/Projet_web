@@ -45,17 +45,65 @@ const reponses = [{
 {
   mot: 'sebum',
   indice: 'S'
+},
+{
+  mot: 'iridescent',
+  indice: 'I'
+},
+{
+  mot: 'convexe',
+  indice: 'C'
+},
+{
+  mot: 'concave',
+  indice: 'C'
+},
+{
+  mot: 'anosognosie',
+  indice: 'A'
+},
+{
+  mot: 'anosognosie',
+  indice: 'A'
+},
+{
+  mot: 'effervescence',
+  indice: 'E'
+},
+{
+  mot: 'transcendant',
+  indice: 'T'
+},
+{
+  mot: 'trivial',
+  indice: 'T'
+},
+{
+  mot: 'ordinal',
+  indice: 'O'
+},
+{
+  mot: 'ascension',
+  indice: 'A'
+},
+{
+  mot: 'eveil',
+  indice: 'E'
+},
+{
+  mot: 'draconien',
+  indice: 'D'
 }
 ]
 
 app.post('/api/reponses', (req, res) => {
-    res.json([
-        {
-            rep : reponses[req.body.indice].mot,
-            indice : reponses[req.body.indice].indice
-        }
-    ])
-}
+  res.json([
+    {
+      rep: reponses[req.body.indice].mot,
+      indice: reponses[req.body.indice].indice
+    }
+  ])
+})
 
 app.get('/api/test', (req, res) => {
   console.log('ce console.log est appelé au bon moment')
@@ -129,4 +177,21 @@ app.get('/api/admin', (req, res) => {
 const port = process.env.PORT || 4000
 app.listen(port, () => {
   console.log(`listening on ${port}`)
+})
+
+app.post('/api/addLog', (req, res) => {
+  const user = users.find(u => u.username === req.body.login && u.password === req.body.password)
+  if (!user) {
+    users.push({
+      username: req.body.login,
+      password: req.body.password
+    })
+    res.json({
+      message: 'user created succesfull'
+    })
+  } else {
+    res.json({
+      message: 'user already exist, please enter new id'
+    })
+  }
 })
